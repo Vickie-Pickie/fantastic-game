@@ -100,7 +100,7 @@ export function getPossibleAttackCells(charType, startIndex) {
           /* eslint-disable */
           continue;
         }
-        attackCells.push(i);
+        attackCells.push(j);
       }
     }
 
