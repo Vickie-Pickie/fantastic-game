@@ -1,8 +1,10 @@
 import Character from '../Character';
-import { TYPE_DAEMON } from './types';
+import characterMap from '../characterMap';
 
 export default class Daemon extends Character {
-  constructor(level, health) {
-    super(level, TYPE_DAEMON, 10, 40, health);
+  constructor() {
+    const type = new.target.name.toLowerCase();
+    const character = characterMap[type];
+    super({ ...character, type });
   }
 }

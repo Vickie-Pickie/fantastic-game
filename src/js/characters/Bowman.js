@@ -1,8 +1,10 @@
 import Character from '../Character';
-import { TYPE_BOWMAN } from './types';
+import characterMap from '../characterMap';
 
 export default class Bowman extends Character {
-  constructor(level, health) {
-    super(level, TYPE_BOWMAN, 25, 25, health);
+  constructor() {
+    const type = new.target.name.toLowerCase();
+    const character = characterMap[type];
+    super({ ...character, type });
   }
 }

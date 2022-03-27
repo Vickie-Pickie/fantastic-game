@@ -43,6 +43,10 @@ export function calcHealthLevel(health) {
   return 'high';
 }
 
+export function calculateLevelUpAbility(value, healthPercent) {
+  return Math.max(value, Math.round(value * (1 + 0.7 * healthPercent)));
+}
+
 export function randomInteger(min, max) {
   // получить случайное число от (min-0.5) до (max+0.5)
   const rand = min - 0.5 + Math.random() * (max - min + 1);

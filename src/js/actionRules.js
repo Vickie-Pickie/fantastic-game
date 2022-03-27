@@ -1,41 +1,7 @@
-import {
-  TYPE_BOWMAN,
-  TYPE_SWORDSMAN,
-  TYPE_MAGICIAN,
-  TYPE_UNDEAD,
-  TYPE_VAMPIRE,
-  TYPE_DAEMON,
-} from './characters/types';
-
-const actionRules = {
-  [TYPE_BOWMAN]: {
-    move: 2,
-    attack: 2,
-  },
-  [TYPE_SWORDSMAN]: {
-    move: 4,
-    attack: 1,
-  },
-  [TYPE_MAGICIAN]: {
-    move: 1,
-    attack: 4,
-  },
-  [TYPE_VAMPIRE]: {
-    move: 2,
-    attack: 2,
-  },
-  [TYPE_UNDEAD]: {
-    move: 4,
-    attack: 1,
-  },
-  [TYPE_DAEMON]: {
-    move: 1,
-    attack: 4,
-  },
-};
+import characterMap from './characterMap';
 
 export function getPossibleMoveCells(charType, startIndex) {
-  const moveLength = actionRules[charType].move;
+  const moveLength = characterMap[charType].rules.move;
   const leftpadding = startIndex % 8;
   const rightpadding = 8 - 1 - leftpadding;
   const leftMove = Math.min(moveLength, leftpadding);
@@ -83,7 +49,7 @@ export function getPossibleMoveCells(charType, startIndex) {
 }
 
 export function getPossibleAttackCells(charType, startIndex) {
-  const attackRadius = actionRules[charType].attack;
+  const attackRadius = characterMap[charType].rules.attack;
   const leftpadding = startIndex % 8;
   const rightpadding = 8 - 1 - leftpadding;
   const leftOffset = Math.min(attackRadius, leftpadding);
@@ -124,5 +90,3 @@ export function getPossibleAttackCells(charType, startIndex) {
 export function calculateDamage(attacker, defender) {
   return Math.max(attacker.attack - Math.round(defender.defence / 3), attacker.attack * 0.2);
 }
-
-export default actionRules;

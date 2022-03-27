@@ -1,8 +1,10 @@
 import Character from '../Character';
-import { TYPE_MAGICIAN } from './types';
+import characterMap from '../characterMap';
 
 export default class Magician extends Character {
-  constructor(level, health) {
-    super(level, TYPE_MAGICIAN, 10, 40, health);
+  constructor() {
+    const type = new.target.name.toLowerCase();
+    const character = characterMap[type];
+    super({ ...character, type });
   }
 }
